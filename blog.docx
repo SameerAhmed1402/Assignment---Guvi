@@ -1,0 +1,20 @@
+Differnce between window and document object :
+ 
+Window object:
+
+It defines window (or)tab from one browser. 
+Whenever a window appears on the screen to display the contents of the document, the window object is created. 
+Eg: window.location;
+    window.location.href;       // (To get URL)
+    window.location.protocol;   // (To get http)
+    window.location.host;       // (To print the host)
+    window.setTimeout(()=> console.log('will be printed after 3 seconds'),3000); // (To print after taking three seconds)
+
+Document object:
+
+It represent the complete HTML document of the browser and we can identify the elements inside of the document.
+With the help of document objects, we can add dynamic content to our web page. 
+The document object can be accessed with a window.document or just document.  
+Eg:
+document.querySelector('p');
+document.querySelector('p').textContent;  //(to get paragraph as a String)
