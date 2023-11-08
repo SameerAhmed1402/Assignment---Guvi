@@ -1,0 +1,114 @@
+                              Database model design for Guvi Zen Class
+
+
+List of Tables:
+students
+classes
+class_sessions
+session_contents
+session_activities
+session_roadmap
+tasks
+tasks_submissions
+instructors
+attendance_records
+_____________________________________________________________________________________________________________________
+
+
+List of Tables and columns:
+students:
+ CREATE TABLE students (
+        student_id INT AUTO_INCREMENT PRIMARY KEY,
+        first_name VARCHAR(50),
+        last_name VARCHAR(50),
+        email VARCHAR(100),
+        date_of_birth DATE,
+        registration_date TIMESTAMP
+     );
+
+classes:
+CREATE TABLE classes (
+         class_id INT AUTO_INCREMENT PRIMARY KEY,
+         class_name VARCHAR(100),
+         instructor_id INT,
+         start_date DATE,
+         end_date DATE
+     ); 
+
+class_sessions:
+ CREATE TABLE class_sessions (
+         session_id INT AUTO_INCREMENT PRIMARY KEY,
+         class_id INT,
+        session_date DATE,
+         start_time TIME,
+         end_time TIME
+    );  
+
+session_contents:
+CREATE TABLE session_contents (
+         content_id INT AUTO_INCREMENT PRIMARY KEY,
+         session_id INT,
+         content_name VARCHAR(100),
+        content_type VARCHAR(50),
+        content_url VARCHAR(255),
+         upload_date TIMESTAMP
+     );
+
+session_activities:
+ CREATE TABLE session_activities (
+        activity_id INT AUTO_INCREMENT PRIMARY KEY,
+         session_id INT,
+         activity_name VARCHAR(100),
+        activity_type VARCHAR(50),
+        activity_description TEXT,
+         start_time TIME,
+         end_time TIME,
+         activity_date DATE
+    );
+
+session_roadmap:
+ CREATE TABLE SessionRoadmap (
+        roadmap_id INT AUTO_INCREMENT PRIMARY KEY,
+         session_id INT,
+         sequence INT,
+         topic VARCHAR(100),
+         activity VARCHAR(100),
+         content_id INT,
+         FOREIGN KEY (content_id) REFERENCES SessionContents(content_id)
+     );
+
+ tasks:
+ CREATE TABLE Task (
+         task_id INT AUTO_INCREMENT PRIMARY KEY,
+        task_name VARCHAR(100),
+         description TEXT,
+         due_date DATE
+     );
+
+ tasks_submissions:
+  CREATE TABLE task_submissions (
+        submission_id INT AUTO_INCREMENT PRIMARY KEY,
+         student_id INT,
+         task_id INT,
+         submission_date TIMESTAMP,
+         submission_text TEXT
+     );                     
+
+instructors:
+ CREATE TABLE Instructors (
+        instructor_id INT AUTO_INCREMENT PRIMARY KEY,
+         first_name VARCHAR(50),
+         last_name VARCHAR(50),
+         email VARCHAR(100)
+      );
+
+attendance_records:
+ CREATE TABLE AttendanceRecords (
+       record_id INT AUTO_INCREMENT PRIMARY KEY,
+         student_id INT,
+         date DATE,
+         status ENUM('Present', 'Absent', 'Late'),
+         notes TEXT
+     );      
+
+_______________________________________________________________________________________________________________________________
